@@ -1,3 +1,83 @@
+@import "../../../node_modules/normalize-scss/sass/normalize";
+
+@include normalize();
+
+html {
+  font-family: 'Sansita', sans-serif;
+}
+
 body {
-  background: red;
+  background: #eee;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
+
+  .top {
+    display: flex;
+    width: 100%;
+    background: #125bd1;
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, .6);
+
+    h1 {
+      font-size: 40px;
+      color: #eee;
+      margin: 0;
+      padding: 20px;
+    }
+  }
+  .content {
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .picker {
+
+      display: flex;
+      width: 280px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      overflow: hidden;
+
+      .options {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        .option {
+          display: none;
+          font-size: 40px;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      button {
+        font-family: 'Sansita', sans-serif;
+        cursor: pointer;
+        border: 0 none;
+        background: transparent;
+        font-size: 20px;
+
+        transition: all 0.3s;
+        transform-origin: center center;
+
+        &:hover,
+        &:active,
+        &:focus {
+          transform: scale(3);
+        }
+      }
+    }
+  }
 }
