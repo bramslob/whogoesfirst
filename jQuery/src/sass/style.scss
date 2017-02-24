@@ -47,7 +47,6 @@ body {
       align-items: center;
       flex-direction: column;
       padding: 20px;
-      overflow: hidden;
 
       .options {
         display: flex;
@@ -59,6 +58,9 @@ body {
           font-size: 40px;
           width: 100%;
           text-align: center;
+          &.chosen {
+            font-size: 100px;
+          }
         }
       }
 
@@ -70,7 +72,7 @@ body {
         font-size: 20px;
 
         transition: all 0.3s;
-        transform-origin: center center;
+        transform-origin: top center;
 
         &:hover,
         &:active,

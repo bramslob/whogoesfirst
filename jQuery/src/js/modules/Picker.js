@@ -1,14 +1,53 @@
+const store = require('store2');
+
+function initializePicker () {
+
+    if (store.has('Picker')) {
+        return buildOptions(store.get('Picker'));
+    }
+
+    let data = {
+        names : [
+            'Elise',
+            'Tim',
+            'Rosalie'
+        ],
+        chosen: []
+    };
+
+    store.set('Picker', data);
+    return buildOptions(data);
+}
+
+function buildOptions (data) {
+    let html = '';
+
+    data.names.forEach(function (item, index) {
+        html += $('<span />', {
+            id   : 'option_' + item,
+            text : item,
+            class: 'option',
+        })[0].outerHTML;
+    });
+
+    $('.options').html(html);
+}
+
 function runSelection (element) {
 
-    $(element).hide();
+    let $options = $('.option');
 
-    var cycles = $('.option').length * 3;
+    $(element).fadeOut(200, function () {
+        animateOption(($options.length * 3));
+    });
 
-    animateOption(cycles);
+    $options
+        .removeClass('active chosen')
+        .fadeOut(100);
 }
 
 function getNextElement ($element) {
-    var $next = $element.next();
+    let $next = $element.next();
 
     if ($next.length > 0) {
         return $next;
@@ -18,16 +57,22 @@ function getNextElement ($element) {
 }
 
 function animateOption (cycles_left, $next = null) {
+
     if (cycles_left === 0) {
-        return showResult();
+        showResult();
+        return;
     }
 
+    console.log('cycles left:', cycles_left);
+
+    let next_cycle = (cycles_left - 1);
+
     if ($next === null) {
-        var $next = $('.option:first-child')
+        $next = $('.option:first-child')
             .addClass('active')
             .show();
 
-        return animateOption((cycles_left - 1), getNextElement($next));
+        return animateOption(next_cycle, getNextElement($next));
     }
 
     $('.option.active').fadeOut(200, function () {
@@ -36,17 +81,51 @@ function animateOption (cycles_left, $next = null) {
         $next.fadeIn(200, function () {
 
             $(this).addClass('active');
-            animateOption((cycles_left - 1), getNextElement($next));
+            animateOption(next_cycle, getNextElement($next));
         });
-    })
+    });
+}
+
+function getResult () {
+    let current_data = store.get('Picker');
+
+    if (current_data.names.length == current_data.chosen.length) {
+        current_data.chosen = [];
+    }
+
+    let possible_names = current_data.names.filter(function (name) {
+        return current_data.chosen.indexOf(name) < 0
+    });
+
+    let random_index = Math.floor(Math.random() * possible_names.length);
+    let name         = possible_names[random_index];
+
+    current_data.chosen.push(name);
+    store.set('Picker', current_data);
+
+    return name;
+
 }
 
 function showResult () {
-    alert('jeeh');
+    let result = getResult();
+
+    $('.option').removeClass('active').hide(0);
+
+    $('#option_' + result)
+        .addClass('chosen')
+        .delay(400)
+        .fadeIn(200, function () {
+            $('button').fadeIn(200);
+        });
 }
 
+
 export default {
-    click: (element) => {
-        runSelection(element);
+    initialize: () => {
+        initializePicker();
+    },
+    click     : (element) => {
+        runSelection(element)
     }
 }
