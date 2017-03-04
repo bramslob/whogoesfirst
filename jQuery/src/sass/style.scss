@@ -23,11 +23,28 @@ body {
     width: 100%;
     background: #125bd1;
     box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, .6);
+    justify-content: space-between;
+    align-items: center;
 
     h1 {
       font-size: 40px;
       color: #eee;
       margin: 0;
+      padding: 20px;
+    }
+    .toggle-form {
+      color: #fff;
+      font-size: 40px;
+      margin: 20px;
+      text-decoration: none;
+    }
+  }
+  .form {
+    display: flex;
+    width: 100%;
+    background: #128ad1;
+
+    .inner {
       padding: 20px;
     }
   }
