@@ -2,7 +2,7 @@ import Store from "./Store";
 
 function already_there_template (name) {
     return `
-    <span class="already-there-entry">
+    <span class="already-there-entry" id="already_there_entry_${name}">
         <span class="already-there-name">
             ${name}
         </span>
@@ -51,10 +51,7 @@ export default class {
         let html = '';
 
         data.names.forEach(function (item, index) {
-            html += $('<span />', {
-                id   : 'option_' + item,
-                class: 'option',
-            }).html(already_there_template(item))[0].outerHTML;
+            html += already_there_template(item);
         });
 
         this.$already_there.html(html);

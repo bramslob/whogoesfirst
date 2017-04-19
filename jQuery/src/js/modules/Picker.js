@@ -4,7 +4,6 @@ export default class {
 
     constructor () {
 
-        this.buildOptions();
         let self = this;
         $('.name-picker').on('click', function () {
             self.runSelection(this);
@@ -28,6 +27,8 @@ export default class {
     }
 
     runSelection (element) {
+
+        this.buildOptions();
 
         let $options = $('.option'),
             self     = this;
@@ -57,9 +58,6 @@ export default class {
             this.showResult();
             return;
         }
-
-
-        console.log('cycles left:', cycles_left);
 
         let self       = this;
         let next_cycle = (cycles_left - 1);
