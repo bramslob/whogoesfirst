@@ -2,7 +2,7 @@ import Store from "./Store";
 
 export default class {
 
-    initialize () {
+    constructor () {
 
         this.buildOptions();
         let self = this;

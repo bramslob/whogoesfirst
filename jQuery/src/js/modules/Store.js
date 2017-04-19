@@ -45,15 +45,31 @@ function addStoreData (key, value) {
     return setStoreData(data);
 }
 
+function removeFromStore (name) {
+
+    let data = initializeStore();
+
+    if (typeof data['names'] === 'undefined') {
+        return;
+    }
+
+    data['names'] = data['names'].filter(value => value !== name);
+
+    return setStoreData(data);
+}
+
 export default  {
-    init: () => initializeStore,
-    get : () => {
+    init  : () => initializeStore,
+    get   : () => {
         return getStore();
     },
-    set : (data) => {
+    set   : (data) => {
         setStoreData(data);
     },
-    add : (key, value) => {
+    add   : (key, value) => {
         addStoreData(key, value);
+    },
+    remove: (key) => {
+        removeFromStore(key);
     }
 }
