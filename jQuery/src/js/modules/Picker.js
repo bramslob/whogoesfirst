@@ -1,5 +1,11 @@
 import Store from "./Store";
 
+function option_template (name) {
+    return `
+    <span class="option" id="option_${name}">
+        ${name}
+    </span>`;
+}
 export default class {
 
     constructor () {
@@ -16,11 +22,7 @@ export default class {
         let data = Store.get();
 
         data.names.forEach(function (item, index) {
-            html += $('<span />', {
-                id   : 'option_' + item,
-                text : item,
-                class: 'option',
-            })[0].outerHTML;
+            html += option_template(item);
         });
 
         $('.options').html(html);
@@ -34,7 +36,7 @@ export default class {
             self     = this;
 
         $(element).fadeOut(200, function () {
-            self.animateOption(($options.length * 3));
+            self.animateOption(($options.length * 2));
         });
 
         $options
@@ -58,7 +60,6 @@ export default class {
             this.showResult();
             return;
         }
-
         let self       = this;
         let next_cycle = (cycles_left - 1);
 
@@ -91,7 +92,7 @@ export default class {
 
         current_data.chosen.push(name);
 
-        if (current_data.names.length == current_data.chosen.length) {
+        if (current_data.names.length === current_data.chosen.length) {
             current_data.chosen = [];
         }
 
