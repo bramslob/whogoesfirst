@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Wie gaat er eerst? - jQuery</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Sansita:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/styles.css">
+</head>
+<body>
+<div id="test">{{ message }}</div>
+
+<div class="container">
+
+    <div class="top">
+        <h1>
+            Wie mag er eerst ?
+        </h1>
+        <a class="toggle-form" href="javascript:void(0);">
+            +
+        </a>
+    </div>
+    <div class="form" style="display: none;">
+        <div class="inner">
+            <div class="already-there">
+
+            </div>
+
+            <div class="input new-name">
+                <input type="text" id="new_name" name="name" />
+                <button class="name-submiter">Voeg toe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="picker">
+            <div class="options">
+            </div>
+
+            <button class="name-picker">
+                Kies iemand
+            </button>
+        </div>
+    </div>
+</div>
+<script src="dist/js/app.js"></script>
+</body>
+</html>

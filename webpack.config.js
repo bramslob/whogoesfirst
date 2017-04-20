@@ -32,5 +32,35 @@ module.exports = [
         plugins: [
             new ExtractTextPlugin("css/styles.css")
         ]
+    },
+    {
+        name   : 'wgf-vuejs',
+        entry  : [
+            './vuejs/src/js/app.js',
+            './vuejs/src/sass/style.scss'
+        ],
+        output : {
+            path    : path.join(__dirname, '/vuejs/dist'),
+            filename: 'js/app.js'
+        },
+        module : {
+            rules: [
+                {
+                    test: /\.scss$/,
+                    use : ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use     : ['css-loader', 'sass-loader']
+                    }),
+                },
+                {
+                    test   : /\.js$/,
+                    exclude: /node_modules/,
+                    loader : "babel-loader"
+                }
+            ]
+        },
+        plugins: [
+            new ExtractTextPlugin("css/styles.css")
+        ]
     }
 ];

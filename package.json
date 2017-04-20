@@ -19,6 +19,7 @@
     "sass-loader": "^6.0.2",
     "store2": "^2.5.0",
     "style-loader": "^0.13.1",
+    "vue": "^2.2.6",
     "webpack": "^2.2.1"
   },
   "dependencies": {
